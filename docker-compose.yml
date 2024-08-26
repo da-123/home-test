@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://test:password@db:5432/swagger
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: swagger
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+

@@ -1,0 +1,35 @@
+# values.yaml
+replicaCount: 1
+
+image:
+  repository: my-flask-app
+  tag: v1
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: false
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+postgresql:
+  enabled: true
+  postgresqlUsername: "test"
+  postgresqlPassword: "password"
+  postgresqlDatabase: "swagger"
+  service:
+    port: 5432
+    type: ClusterIP
+
+secrets:
+  postgresqlPassword: "db-secrets"
+
